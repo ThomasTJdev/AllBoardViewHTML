@@ -18,7 +18,7 @@ Installation
 
 or
 
-- Create a folder **plugins/AllBoardView**
+- Create a folder **plugins/AllBoardViewHTML**
 - Copy all files under this directory
 
 or
