@@ -26,12 +26,19 @@ or
 - Clone folder with git
 
 Requirements
----
+------------
 
 * Change the template **Template/allboardviewhtml/show.php** to your columns. Now it is configured to Backlog, Ready, Work in progress and Done.
-* Only 4 columns: Line 100, line 124-127, line 167-176
-* More columns: Line 100, line 124-127, line 131-134, line 167-176
+* Only 4 columns: Check the comments in the top of **Template/allboardviewhtml/show.php** 
+* More columns: Check the comments in the top of **Template/allboardviewhtml/show.php** 
 * This is only tested with a small project team, please ensure that your user priviliges works as intended in a development environment first.
+
+Changes
+-------
+
+* Support for subtasks - will be displayed below task title
+* Equal heights for columns - max and min setting available in **Template/allboardviewhtml/show.php**
+* CSS styling
 
 Todo
 ----

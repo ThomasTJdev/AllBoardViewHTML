@@ -16,6 +16,7 @@ class AllBoardViewHTMLModel extends Base
 	const TABLEusers = 'users';
 	const TABLEswimlanes = 'swimlanes';
 	const TABLEaccess = 'project_has_users';
+    const TABLEsubtasks = 'subtasks';
 
 	public function AllBoardViewHTMLGetProjectid($user_id) // Get all project_id where user has access
         {
@@ -110,17 +111,44 @@ class AllBoardViewHTMLModel extends Base
 				'tblSwim.name AS swimlane_name',
 				self::TABLEtasks.'.date_moved',
 				self::TABLEtasks.'.priority'
+                //'tblSubt.title as subtasks_title', // Testing below
+                //'tblSubt.status as subtasks_status'
 			)
 			->left(self::TABLE, 'tblPro',  'id', self::TABLEtasks, 'project_id')
 			->left(self::TABLEcolumns, 'tblCol',  'id', self::TABLEtasks, 'column_id')
 			->left(self::TABLEcategory, 'tblCat',  'id', self::TABLEtasks, 'category_id')
 			->left(self::TABLEusers, 'tblUsers',  'id', self::TABLEtasks, 'owner_id')
 			->left(self::TABLEswimlanes, 'tblSwim',  'id', self::TABLEtasks, 'swimlane_id')
+            //->left(self::TABLEsubtasks, 'tblSubt',  'task_id', self::TABLEtasks, 'id')
 			->in(self::TABLEtasks.'.project_id', $projectAccess)
 
             ->asc('project_name')
 
       ->findAll();
 	 }
+
+     public function AllBoardViewHTMLFullSubtasksListAll($projectAccess)
+         {
+
+ 		foreach($projectAccess as $u) $uids[] = $u['project_id'];
+ 		$projectAccess = implode(", ",$uids);
+ 		substr_replace($projectAccess, "", -2);
+ 		$projectAccess = explode(', ', $projectAccess);
+
+ 		return  $this->db
+ 	    ->table(self::TABLEtasks)
+ 	    ->columns(
+                self::TABLEtasks.'.id',
+                'tblSubt.task_id as tasks_id',
+                'tblSubt.title as subtasks_title',
+                'tblSubt.status as subtasks_status'
+ 			)
+            ->left(self::TABLEsubtasks, 'tblSubt',  'task_id', self::TABLEtasks, 'id')
+ 			->in(self::TABLEtasks.'.project_id', $projectAccess)
+
+            //->asc('project_name')
+
+       ->findAll();
+ 	 }
 
 }

@@ -26,10 +26,12 @@ class AllBoardViewHTMLController extends BaseController
 
 	$projectAccess = $this->allBoardViewHTMLModel->AllBoardViewHTMLGetProjectid($user['id']);
 	$AllBoardViewHTMLData = $this->allBoardViewHTMLModel->allBoardViewHTMLFullTasksListAll($projectAccess);
+    $AllBoardViewHTMLDataST = $this->allBoardViewHTMLModel->allBoardViewHTMLFullSubtasksListAll($projectAccess);
 
         $this->response->html($this->helper->layout->app('allBoardViewHTML:allboardviewhtml/show', array('title' => t('AllBoardViewHTML - All projects'),
             'project' => 'Allprojects',
-	    'AllBoardViewHTMLData' => $AllBoardViewHTMLData
+	    'AllBoardViewHTMLData' => $AllBoardViewHTMLData,
+        'AllBoardViewHTMLDataST' => $AllBoardViewHTMLDataST
         )));
     }
 
