@@ -23,14 +23,15 @@ DO YOU NEED OTHER COLUMNS THAN:
 - Ready
 - Work in progress
 - Done
+Look for "//CHANGE" in the code below.
 
-"Just 4 others":
+"Just 4 others, but with other name":
 Find comment //CHANGE1 (haystack checker - include WHOLE name)
 Find comment //CHANGE2 (just the headings for printing)
 Find comment //CHANGE3 (just the if condition to match the heading)
 
-"Ohh I want more"
-Create loops for //CHANGE1-3 AND //CHANGE4
+"Ohh I want more, 5 columns, 10 columns!"
+Create loop for //CHANGE1-3 AND //CHANGE4
 
 */
  ?>
@@ -149,7 +150,7 @@ foreach($AllBoardViewHTMLData as $task){
             // Make and print grid
             ?>
             <br><hr />
-            <h2><a class="projectnameh2" href="/kanboard/?controller=BoardViewController&action=show&project_id=<?php print $task['project_id']; ?>"><?php print $pn; ?></a></h2>
+            <h2><a class="projectnameh2" href="/kanboard/?controller=BoardViewController&action=show&project_id=<?php print $pid; ?>"><?php print $pn; ?></a></h2>
             <div class="row row-eq-height">
             <?php //CHANGE2 ?>
               <div class="colhcn col-sm-4 col-md-3"><div class="hcn hcn1">Backlog</div></div>
@@ -177,6 +178,8 @@ foreach($AllBoardViewHTMLData as $task){
             // Make sure that var $pn has latest projectname
             $pn = $task['project_name'];
         }
+
+        $pid = $task['project_id']; //Used for link in projectname above
 
         // Make task ready
         if ($task['is_active']) { // Only include active tasks
