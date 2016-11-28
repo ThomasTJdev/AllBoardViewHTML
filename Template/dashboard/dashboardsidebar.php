@@ -1,3 +1,3 @@
 <li>
-   <?= $this->url->link(t('AllBoardViewHTML'), 'AllBoardViewHTMLController', 'projectAll', array('plugin' => 'allBoardViewHTML')) ?>
+   <?= $this->url->link(t('View all boards'), 'AllBoardViewHTMLController', 'projectAll', array('plugin' => 'allBoardViewHTML')) ?>
 </li>

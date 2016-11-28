@@ -1,4 +1,4 @@
     <li>
        <i class="fa fa-th-large fa-fw"></i>&nbsp;
-        <?= $this->url->link(t('AllBoardViewHTML'), 'AllBoardViewHTMLController', 'projectAll', array('plugin' => 'allBoardViewHTML', 'project_id' => $project['id'])) ?>
+        <?= $this->url->link(t('View all boards'), 'AllBoardViewHTMLController', 'projectAll', array('plugin' => 'allBoardViewHTML', 'project_id' => $project['id'])) ?>
     </li>
