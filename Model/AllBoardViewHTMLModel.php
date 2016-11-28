@@ -17,6 +17,8 @@ class AllBoardViewHTMLModel extends Base
 	const TABLEswimlanes = 'swimlanes';
 	const TABLEaccess = 'project_has_users';
     const TABLEsubtasks = 'subtasks';
+    const TABLEtags = 'tags';
+    const TABLEtasktags = 'task_has_tags';
 
 	public function AllBoardViewHTMLGetProjectid($user_id) // Get all project_id where user has access
         {
@@ -150,5 +152,19 @@ class AllBoardViewHTMLModel extends Base
 
        ->findAll();
  	 }
+
+     public function AllBoardViewHTMLFullTags()
+         {
+       return  $this->db
+       ->table(self::TABLEtags)
+       ->columns(
+                self::TABLEtags.'.id',
+                self::TABLEtags.'.name',
+                self::TABLEtags.'.project_id',
+                'tblTaskhastags.task_id as task_id'
+           )
+            ->left(self::TABLEtasktags, 'tblTaskhastags',  'tag_id', self::TABLEtags, 'id')
+       ->findAll();
+    }
 
 }

@@ -36,11 +36,11 @@ class Plugin extends Base
     }
     public function getPluginVersion()
     {
-        return '0.0.2';
+        return '0.0.3';
     }
     public function getPluginDescription()
     {
-        return 'AllBoardViewHTML';
+        return 'Render all boards on a single page for overview. No interaction possible.';
     }
     public function getPluginHomepage()
     {

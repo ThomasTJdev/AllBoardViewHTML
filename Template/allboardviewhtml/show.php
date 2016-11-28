@@ -137,6 +137,7 @@ $cn3 = ""; // COLOUMN NR3
 $cn4 = ""; // COLOUMN NR4
 $cs = ""; // COLOR STATUS
 $dd = ""; // DATA COLLECTOR
+$tt = ""; // DATA COLLECTOR FOR TAGS
 
 foreach($AllBoardViewHTMLData as $task){
     if (strpos($haystack, $task['column_name']) !== false) {
@@ -204,6 +205,19 @@ foreach($AllBoardViewHTMLData as $task){
                     '</div>';
             }
 
+            // Loop through tags and include relevant
+            foreach($AllBoardViewHTMLFullTags as $tags){
+                //print 'project: ' . $tags['project_id'] . ' id: ' . $tags['task_id'] . ' name: ' . $tags['name'];
+                if ($tags['project_id'] == $task['project_id'] && $tags['task_id'] == $task['id']){
+                    $tt .= '<li class="tag-' . $tags['name'] . '">' .  $tags['name'] .'</li>';
+                }
+            }
+            // Check if data collector for tags is empty, if not then include div
+            if (!empty($tt)) {
+                $tt = '<div class="task-tags" style="margin-left: 15px;"> <ul>'.$tt.'</ul></div>';
+                $dd .= $tt;
+            }
+
             // Loop through subtasks and include relevant
             foreach($AllBoardViewHTMLDataST as $subtasks){
                 if ($subtasks['subtasks_status'] == "0" && $subtasks['tasks_id'] == $task['id']){
@@ -230,6 +244,7 @@ foreach($AllBoardViewHTMLData as $task){
                 $cn4 .= $dd;
             }
 
+            $tt = ""; // Cleaning data collector for tags
             $cs = ""; // Cleaning colorstatus
             $dd = ""; // Cleaning data collector
 
